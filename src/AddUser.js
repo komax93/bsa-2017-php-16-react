@@ -19,12 +19,18 @@ class AddUser extends Component {
 
     handleClick(e) {
         e.preventDefault();
-        this.props.add(this.state.user);
-        let user = {
-            id: this.state.user.id + 1,
-            name: ""
+
+        if(this.state.user.name === '') {
+          alert('Please write user name!');
         }
-        this.setState({user: user});
+        else {
+          this.props.add(this.state.user);
+
+          this.setState({user: {
+              id: this.state.user.id +1,
+              name: ""
+          }});
+        }
     }
 
     render() {

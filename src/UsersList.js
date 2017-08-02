@@ -9,7 +9,7 @@ class UsersList extends Component {
     return(
       <div className="list">
         <AddUser add={this.props.add}/>
-        {users.map(user => <ShowUser user={user}/>)}
+        {users.map(user => <ShowUser user={user} remove={this.props.remove}/>)}
       </div>
     );
   }

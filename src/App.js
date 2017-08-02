@@ -15,11 +15,19 @@ class App extends Component {
     this.setState({users: users});
   }
 
+  removeUser(user) {
+    let users = this.state.users;
+    this.setState({
+      users: users.filter(userItem => userItem.id !== user.id)
+    });
+  }
+
   render() {
     return (
       <UsersList
         users={this.state.users}
         add={this.addUser.bind(this)}
+        remove={this.removeUser.bind(this)}
       />
     );
   }
