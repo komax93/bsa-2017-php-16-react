@@ -36,8 +36,14 @@ class AddUser extends Component {
     render() {
         return (
             <form>
-                <input type="text" value={this.state.user.name} onChange={this.handleChange.bind(this)}/>
-                <button onClick={this.handleClick.bind(this)}>Добавить</button>
+                <div className="row">
+                    <div className="col-md-9">
+                        <input type="text" className="form-control" value={this.state.user.name} onChange={this.handleChange.bind(this)}/>
+                    </div>
+                    <div className="col-md-3">
+                        <button className="btn btn-success" onClick={this.handleClick.bind(this)}>Добавить</button>
+                    </div>
+                </div>
             </form>
         )
     }

@@ -9,10 +9,13 @@ class ShowUser extends Component {
     let user = this.props.user;
 
     return(
-      <div>
-        <p>Id: {user.id} | Name: {user.name}</p>
-        <button onClick={this.handleRemove.bind(this)}>Удалить</button>
-      </div>
+      <tr>
+        <th scope="row">{user.id}</th>
+        <td>{user.name}</td>
+        <td>
+          <button className="btn btn-danger" onClick={this.handleRemove.bind(this)}>Удалить</button>
+        </td>
+      </tr>
     )
   }
 }
