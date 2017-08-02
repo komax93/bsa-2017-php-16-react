@@ -3,15 +3,35 @@ import ShowUser from './ShowUser';
 import AddUser from './AddUser';
 
 class UsersList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: []
+    }
+  }
+
+  addUser(user) {
+    let users = this.state.users;
+    users.push(user);
+    this.setState({users: users});
+  }
+
+  removeUser(user) {
+    let users = this.state.users;
+    this.setState({
+      users: users.filter(userItem => userItem.id !== user.id)
+    });
+  }
+
   render() {
-    let users = this.props.users;
+    let users = this.state.users;
 
     return(
       <div className="container">
         <div className="col-md-6">
           <h1>Users List</h1>
 
-          <AddUser add={this.props.add}/>
+          <AddUser add={this.addUser.bind(this)}/>
 
           <hr/>
 
@@ -24,7 +44,7 @@ class UsersList extends Component {
               </tr>
             </thead>
             <tbody>
-              {users.map(user => <ShowUser user={user} remove={this.props.remove}/>)}
+              {users.map(user => <ShowUser user={user} remove={this.removeUser.bind(this)}/>)}
             </tbody>
           </table>
         </div>
