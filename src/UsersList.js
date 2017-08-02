@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
+import ShowUser from './ShowUser';
 
 class UsersList extends Component {
   render() {
+    let users = this.props.users;
+
     return(
-      <h1>hello</h1>
-    )
+      <div>
+        {users.map(user => <ShowUser user={user}/>)}
+      </div>
+    );
   }
 }
 
