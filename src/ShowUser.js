@@ -6,8 +6,7 @@ class ShowUser extends Component {
 
     return(
       <div>
-        <p>Id: {user.id}</p>
-        <p>Name: {user.name}</p>
+        <p>Id: {user.id} | Name: {user.name}</p>
         <button>Удалить</button>
       </div>
     )
