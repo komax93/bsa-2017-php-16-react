@@ -10,6 +10,11 @@ export default function reducer(state = [], action) {
       ];
     case 'DELETE_USER':
       return state.filter(user => user.id !== action.id);
+    case 'FILTER_USER':
+      return state.map(user => {
+        user.hidden = !user.name.includes(action.name);
+        return user;
+      });
     default:
       return state;
   }

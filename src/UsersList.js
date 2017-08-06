@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ShowUser from './ShowUser';
 import AddUser from './AddUser';
+import FilterUser from './FilterUser';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteUser } from './actions';
@@ -14,10 +15,10 @@ class UsersList extends Component {
         <div className="col-md-6">
           <h1>Users List</h1>
 
+          <FilterUser/>
           <AddUser/>
 
           <hr/>
-
           <table className="table table-striped">
             <thead>
               <tr>
@@ -27,7 +28,7 @@ class UsersList extends Component {
               </tr>
             </thead>
             <tbody>
-              {users.map(user => <ShowUser key={user.id} user={user} handleRemove={() => this.props.deleteUser(user.id) }/>)}
+              {users.map(user => (!user.hidden) ? <ShowUser key={user.id} user={user} handleRemove={() => this.props.deleteUser(user.id) }/> : "")}
             </tbody>
           </table>
         </div>

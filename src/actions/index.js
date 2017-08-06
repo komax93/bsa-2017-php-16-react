@@ -14,3 +14,10 @@ export function deleteUser (id) {
     id
   }
 }
+
+export function filterUser (name) {
+  return {
+    type: 'FILTER_USER',
+    name
+  }
+}
