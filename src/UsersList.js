@@ -1,37 +1,20 @@
 import React, {Component} from 'react';
 import ShowUser from './ShowUser';
 import AddUser from './AddUser';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { deleteUser } from './actions';
 
 class UsersList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    }
-  }
-
-  addUser(user) {
-    let users = this.state.users;
-    users.push(user);
-    this.setState({users: users});
-  }
-
-  removeUser(user) {
-    let users = this.state.users;
-    this.setState({
-      users: users.filter(userItem => userItem.id !== user.id)
-    });
-  }
-
   render() {
-    let users = this.state.users;
+    let users = this.props.reduceState;
 
     return(
       <div className="container">
         <div className="col-md-6">
           <h1>Users List</h1>
 
-          <AddUser add={this.addUser.bind(this)}/>
+          <AddUser/>
 
           <hr/>
 
@@ -44,7 +27,7 @@ class UsersList extends Component {
               </tr>
             </thead>
             <tbody>
-              {users.map(user => <ShowUser user={user} remove={this.removeUser.bind(this)}/>)}
+              {users.map(user => <ShowUser key={user.id} user={user} handleRemove={() => this.props.deleteUser(user.id) }/>)}
             </tbody>
           </table>
         </div>
@@ -53,4 +36,16 @@ class UsersList extends Component {
   }
 }
 
-export default UsersList;
+function mapStateToProps(state) {
+  return {
+    reduceState: state
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ deleteUser }, dispatch);
+}
+
+const UsersListConnected = connect(mapStateToProps, mapDispatchToProps)(UsersList);
+
+export default UsersListConnected;

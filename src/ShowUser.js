@@ -1,22 +1,14 @@
 import React, {Component} from 'react';
 
 class ShowUser extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  handleRemove(e) {
-    this.props.remove(this.props.user);
-  }
-
   render() {
-    let user = this.props.user;
+    let { user, handleRemove } = this.props;
 
     return(
       <tr>
-        <th scope="row">{user.id}</th>
-        <td>{user.name}</td>
-        <td><button className="btn btn-danger" onClick={this.handleRemove.bind(this)}>Удалить</button></td>
+        <th scope="row">{ user.id }</th>
+        <td>{ user.name }</td>
+        <td><button className="btn btn-danger" onClick={ handleRemove }>Удалить</button></td>
       </tr>
     )
   }
